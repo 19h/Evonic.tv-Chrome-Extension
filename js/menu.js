@@ -17,12 +17,12 @@ document.addEventListener('DOMContentLoaded', function() {
 						'</ul>' +
 					'</div>' +
 				'</li>';
-		}
+		};
 
 		if (movieList) {
 			movieList.forEach(function (movie) {
 				content += movieItem(movie);
-			})
+			});
 		}
 
 		document.getElementById('movieList').innerHTML = content;
@@ -65,14 +65,14 @@ document.addEventListener('DOMContentLoaded', function() {
 				var movieList = result.MovieStorage;
 
 				movieList.forEach(function (movie) {
-					if (movie.title == self.getAttribute('x-title')) {
+					if (movie.title === self.getAttribute('x-title')) {
 						toBeSliced = i + 1;
 						var enclosure = self.parentNode.parentNode.parentNode,
 						    enclosureParent = enclosure.parentNode;
 						
 						enclosureParent.removeChild(enclosure);
 					}
-				})
+				});
 
 				var newList = movieList.slice(toBeSliced);
 
@@ -83,15 +83,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		};
 
 		var listElementHandler = function (action) {
-			if (action === 'download')
+			if (action === 'download') {
 				return downloadClick;
+			}
 
-			if (action === 'copyLink')
+			if (action === 'copyLink') {
 				return copyLinkClick;
+			}
 
-			if (action === 'remove')
+			if (action === 'remove') {
 				return removeClick;
-		}
+			}
+		};
 
 		listElements.forEach(function (listElement) {
 			var action = listElement.getAttribute('x-action');
@@ -100,6 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (actionHandler) {
 				return listElement.addEventListener('click', actionHandler);
 			}
-		})
+		});
 	});
 });
