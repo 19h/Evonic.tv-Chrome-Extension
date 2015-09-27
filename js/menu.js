@@ -19,13 +19,16 @@ document.addEventListener('DOMContentLoaded', function() {
 				'</li>';
 		}
 
-		movieList.forEach(function (movie) {
-			content += movieItem(movie);
-		})
+		if (movieList) {
+			movieList.forEach(function (movie) {
+				content += movieItem(movie);
+			})
+		}
 
 		document.getElementById('movieList').innerHTML = content;
 
 		var listElements = document.getElementsByClassName('shortcut');
+		    listElements = Array.prototype.slice.call(listElements);
 
 		var downloadClick = function() {
 			var element = document.createElement('a');
